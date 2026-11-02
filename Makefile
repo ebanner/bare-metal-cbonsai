@@ -53,7 +53,7 @@ src/lib/%.o: src/lib/%.c
 		-o $@ \
 		# -std=c99 \
 
-# src/sl/sl.o: src/sl/sl.c
+# src/cbonsai/cbonsai.o: src/cbonsai/cbonsai.c
 # 	i686-elf-gcc \
 # 		-m32 \
 # 		-std=c99 \
@@ -66,10 +66,10 @@ src/lib/%.o: src/lib/%.c
 # 		-fno-builtin \
 # 		-O0 \
 # 		-g \
-# 		-c src/sl/sl.c \
-# 		-o src/sl/sl.o
+# 		-c src/cbonsai/cbonsai.c \
+# 		-o src/cbonsai/cbonsai.o
 
-os.elf: src/boot_asm.o src/boot_c.o src/init.o $(LIB_OBJ) #src/sl/sl.o
+os.elf: src/boot_asm.o src/boot_c.o src/init.o $(LIB_OBJ) #src/cbonasi/cbonasi.o
 	i686-elf-ld \
 		-m elf_i386 \
 		-T link.ld \
@@ -78,7 +78,7 @@ os.elf: src/boot_asm.o src/boot_c.o src/init.o $(LIB_OBJ) #src/sl/sl.o
 		src/boot_c.o \
 		src/init.o \
 		$(LIB_OBJ) #\
-		# src/sl/sl.o
+		# src/cbonasi/cbonasi.o
 
 os.img: os.elf
 	i686-elf-objcopy -O binary os.elf os.img
@@ -88,4 +88,4 @@ docker:
 	docker run -it --rm -v $(CURDIR):/src doom-os
 
 clean:
-	rm -f src/*.o *.elf *.bin *.img src/*.o src/lib/*.o src/sl/*.o
+	rm -f src/*.o *.elf *.bin *.img src/*.o src/lib/*.o src/cbonsai/*.o
