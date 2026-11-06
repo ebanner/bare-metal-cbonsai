@@ -1,0 +1,1 @@
+typedef struct PANEL PANEL;
