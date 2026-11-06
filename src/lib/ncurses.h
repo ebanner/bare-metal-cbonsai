@@ -30,3 +30,4 @@ int scrollok(WINDOW*, int);
 int refresh(void);
 int mvcur(int, int, int, int);
 int endwin(void);
+int clear(void);
